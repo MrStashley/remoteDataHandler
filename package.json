@@ -1,0 +1,25 @@
+{
+  "name": "remotedatahandler",
+  "version": "1.0.0",
+  "description": "handles ajax requests",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrStashley/remoteDataHandler.git"
+  },
+  "author": "Cole Lashley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MrStashley/remoteDataHandler/issues"
+  },
+  "homepage": "https://github.com/MrStashley/remoteDataHandler#readme",
+  "dependencies": {
+    "express": "^4.17.0",
+    "hjs": "0.0.6",
+    "hogan-middleware": "^0.2.2",
+    "socket.io": "^2.2.0"
+  }
+}
