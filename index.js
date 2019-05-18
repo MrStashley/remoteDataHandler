@@ -13,6 +13,11 @@ app.get("/", (req, res, next) =>{
 });
 
 app.get("/test", (req, res, next) =>{
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  
   var dataArray = [];
   dataArray[dataArray.length] = 41;
   dataArray[dataArray.length] = 3;
