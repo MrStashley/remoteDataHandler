@@ -4,7 +4,7 @@ const express = require('express'),
       port    = process.env.PORT || 5000;
       path    = require('path');
       bodyParser = require('body-parser');
-      nodemailer = require('nodemailer'); 
+      nodemailer = require('nodemailer');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -39,9 +39,33 @@ app.post("/email", (req,res,next) =>{
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   res.setHeader('Access-Control-Allow-Credentials', true);
 
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'colel1410@gmail.com',
+      pass: 'baseball2901'
+    }
+  });
+
   var text = req.body.text;
 
-  console.log(text);
+  console.log("Email text" + text);
+
+  const mailOptions = {
+    from: 'colel1410@gmail.com',
+    to: 'cmljmo@yahoo.com',
+    subject: "Test Email using node.js",
+    text: text
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+
 })
 
 http.listen(port, function(){
