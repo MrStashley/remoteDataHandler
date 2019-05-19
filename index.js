@@ -49,11 +49,11 @@ app.post("/email", (req,res,next) =>{
 
   var text = req.body.text;
 
-  console.log("Email text" + text);
+  console.log("Email text: " + text);
 
   const mailOptions = {
     from: 'colel1410@gmail.com',
-    to: 'cmljmo@yahoo.com',
+    to: 'r_silver@robsilvervisuals.com',
     subject: "Test Email using node.js",
     text: text
   };
