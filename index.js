@@ -53,7 +53,7 @@ app.post("/email", (req,res,next) =>{
 
   const mailOptions = {
     from: 'colel1410@gmail.com',
-    to: 'r_silver@robsilvervisuals.com',
+    to: 'hmk0809@icloud.com',
     subject: "Test Email using node.js",
     text: text
   };
