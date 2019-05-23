@@ -68,6 +68,16 @@ app.post("/email", (req,res,next) =>{
 
 })
 
+app.post("/bookingForm", (req,res,next) =>{
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
+  var body = req.body;
+  console.log("Form data: " + body);
+})
+
 http.listen(port, function(){
   console.log('listening on *:' + port);
 });
