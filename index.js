@@ -79,7 +79,7 @@ app.post("/bookingForm", (req,res,next) =>{
   var subject = req.body.Subject;
   var message = req.body.Message;
 
-  console.log("Form data: " + body);
+  console.log("Form data: " + email + " " + name + " " + subject + " " + message);
 })
 
 http.listen(port, function(){
