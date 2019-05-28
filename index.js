@@ -81,7 +81,10 @@ app.post("/bookingForm", (req,res,next) =>{
   var dates = req.body.dates;
 
   console.log("Form data: " + email + " " + name + " " + subject + " " + message);
-  console.log("Dates: " + dates);
+  console.log("Dates: ");
+  for(let i = 0; i < dates.length; i++){
+    console.log(dates[i] + " and ");
+  }
 })
 
 http.listen(port, function(){
