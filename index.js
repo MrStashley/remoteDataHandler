@@ -98,19 +98,19 @@ app.post("/bookingForm", (req,res,next) =>{
     }
   });
 
-  var toRobText = "A client has submitted a request for a service on your website.\n Client Information:\n Email: "
-  + email + "\nName: " + name + "\nSubject: " + subject + "\nMessage: " + message + "\nDates Requested: ";
+  var toRobText = "A client has submitted a request for a service on your website.\n\n Client Information:\n Email: "
+  + email + "\n Name: " + name + "\n Subject: " + subject + "\n Message: " + message + "\n Dates Requested: ";
 
-  toRobText += dateString[0].toDateString;
+  toRobText += dateString[0].toDateString();
 
   for(let i = 1; i < dates.length; i++){
     toRobText += ", " + dateString[i].toDateString();
   }
 
-  toRobText += "\nThis client has received an email saying that their message has been received and that\n you will review their request and get back to them within 24 hours.\n" +
+  toRobText += "\n\nThis client has received an email saying that their message has been received and that\n you will review their request and get back to them within 24 hours.\n" +
   "Use the email above to send your response.";
 
-  toClientText = "Hey, it's Rob. \nI got your request that you submitted on my website. I will review it within the next 24 hours and get back to you on whether or not I can complete your request.\n Have a great day!\n\n Rob from RobSilverVisuals";
+  toClientText = "Hey, it's Rob. \nI got your request that you submitted on my website. I will review it within the next 24 hours and get back to you on whether or not I can complete your request.\nIf you have any further questions or concerns, Email me at r_silver@robsilvervisuals.com\nHave a great day!\n\n Rob from RobSilverVisuals";
 
 
   const ToRob = {
