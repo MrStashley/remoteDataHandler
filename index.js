@@ -85,8 +85,7 @@ app.post("/bookingForm", (req,res,next) =>{
   console.log("Dates: ");
   for(let i = 0; i < dates.length; i++){
     console.log(dates[i] + " and ");
-    dateString[i] = new Date();
-    dateString[i].setDate(dates[i]);
+    dateString[i] = new Date(dates[i]);
     console.log(dateString[i]);
   }
 
