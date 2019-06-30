@@ -112,7 +112,7 @@ app.post("/bookingForm", (req,res,next) =>{
   toRobText += "\n\nThis client has received an email saying that their message has been received and that\n you will review their request and get back to them within 24 hours.\n" +
   "Use the email above to send your response.\n" + idString;
 
-  toClientText = "Hey, it's Rob. \nI got your request that you submitted on my website. I will review it within the next 24 hours and get back to you on whether or not I can complete your request.\nIf you have any further questions or concerns, Email me at r_silver@robsilvervisuals.com or text me at 4436132750\nHave a great day!\n\n Rob from RobSilverVisuals\n" + idString;
+  toClientText = "Hey, it's Rob. \nI got your request that you submitted on my website. I will review it within the next 24 hours and get back to you on whether or not I can complete your request.\nIf you have any further questions or concerns, Email me at r_silver@robsilvervisuals.com or text me at 4436132750\nHave a great day!\n Rob from RobSilverVisuals\n" + idString;
 
 
   const ToRob = {
