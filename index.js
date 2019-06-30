@@ -80,6 +80,7 @@ app.post("/bookingForm", (req,res,next) =>{
   var message = req.body.Message;
   var dates = req.body.dates;
 
+
   var dateString = [];
   console.log("Form data: " + email + " " + name + " " + subject + " " + message);
   console.log("Dates: ");
@@ -100,6 +101,9 @@ app.post("/bookingForm", (req,res,next) =>{
   var id = Math.floor(Math.random() * 500) + 100;
   var idString = "#ID: " + id;
 
+  var url="https://ajax-handler.herokuapp.com/respond?Email="+email+"&Name="+name+"&Subject="+subject+"&Message="+message+"&dates="+dates;
+  console.log(url);
+
   var toRobText = "A client has submitted a request for a service on your website.\n\n Client Information:\n Email: "
   + email + "\n Name: " + name + "\n Subject: " + subject + "\n Message: " + message + "\n Dates Requested: ";
 
@@ -110,7 +114,7 @@ app.post("/bookingForm", (req,res,next) =>{
   }
 
   toRobText += "\n\nThis client has received an email saying that their message has been received and that\n you will review their request and get back to them within 24 hours.\n" +
-  "Use the email above to send your response.\n" + idString;
+  "Go to this link to confirm or deny their request: \n\n" + url + "\nOr Use the email above to respond manually.\n" + idString;
 
   toClientText = "Hey, it's Rob. \nI got your request that you submitted on my website. I will review it within the next 24 hours and get back to you on whether or not I can complete your request.\nIf you have any further questions or concerns, Email me at r_silver@robsilvervisuals.com or text me at 4436132750\nHave a great day!\n Rob from RobSilverVisuals\n" + idString;
 
@@ -146,6 +150,21 @@ app.post("/bookingForm", (req,res,next) =>{
   });
 
 
+})
+
+app.get("/respond", (req,res,next) =>{
+  var email = req.query.Email;
+  var name = req.query.Name;
+  var subject = req.query.Subject;
+  var message = req.query.Message;
+  var dates = req.query.dates;
+
+  var dateString = [];
+  for(let i = 0; i < dates.length; i++){
+    dateString[i] = new Date(dates[i]);
+  }*/
+
+  res.json(req.query);
 })
 
 http.listen(port, function(){
