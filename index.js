@@ -101,7 +101,7 @@ app.post("/bookingForm", (req,res,next) =>{
   var id = Math.floor(Math.random() * 500) + 100;
   var idString = "#ID: " + id;
 
-  var url="https://ajax-handler.herokuapp.com/respond?Email="+email+"&Name="+name+"&Subject="+subject+"&Message="+message+"&dates="+dates;
+  var url="https://ajax-handler.herokuapp.com/respond?Email="+email+"&Name="+name+"&Subject="+subject+"&Message="+message+"&dates="+JSON.stringify(dates);
   console.log(url);
 
   var toRobText = "A client has submitted a request for a service on your website.\n\n Client Information:\n Email: "
@@ -160,11 +160,14 @@ app.get("/respond", (req,res,next) =>{
   var dates = req.query.dates;
 
   var dateString = [];
+  var
+
   for(let i = 0; i < dates.length; i++){
     dateString[i] = new Date(dates[i]);
   }
-
-  res.json(req.query);
+  //var data = req.query;
+  //data.Dates = dateString;
+  res.render("confirm",req.query);
 })
 
 http.listen(port, function(){
