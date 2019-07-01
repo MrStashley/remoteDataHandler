@@ -157,10 +157,9 @@ app.get("/respond", (req,res,next) =>{
   var name = req.query.Name;
   var subject = req.query.Subject;
   var message = req.query.Message;
-  var dates = req.query.dates;
+  var dates = JSON.parse(req.query.dates);
 
   var dateString = [];
-  var
 
   for(let i = 0; i < dates.length; i++){
     dateString[i] = new Date(dates[i]);
