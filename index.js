@@ -162,7 +162,7 @@ app.get("/respond", (req,res,next) =>{
   var dateString = [];
 
   for(let i = 0; i < dates.length; i++){
-    dateString[i] = new Date(dates[i]);
+    dateString[i] = new Date(dates[i]).toDateString();
     console.log(dateString[i]);
   }
   var data = req.query;
