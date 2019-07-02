@@ -163,10 +163,11 @@ app.get("/respond", (req,res,next) =>{
 
   for(let i = 0; i < dates.length; i++){
     dateString[i] = new Date(dates[i]);
+    console.log(dateString[i]);
   }
-  //var data = req.query;
-  //data.Dates = dateString;
-  res.render("confirm",req.query);
+  var data = req.query;
+  data.dates = dateString;
+  res.render("confirm",data);
 })
 
 http.listen(port, function(){
