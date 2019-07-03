@@ -35,7 +35,7 @@
    <form>
      <p id = "para">Type your response below, or hit submit to send default response</p>
      <button type = "button" id="accept" class = "confButton" onclick = "bclick(0);">Accept</button><button type = "button" id = "decline" class = "confButton" onclick = "bclick(1);">Decline</button>
-     <textarea id ="res" rows = "10" cols = "82" style = "font-size:25px;">Hey, this is Rob. I got your message concerning the service you booked on my website. I have reviewed your request and I am able to complete it. You are booked for [requested dates, will be filled correctly in email]. Email me at r_silver@robsilvervisuals.com, text me at 4436132750, or dm me on my instagram to coordinate time of day and other details. Thanks for choosing RobSilverVisuals, and I hope you have an awesome day. -Rob</textarea>
+     <textarea id ="res" rows = "10" cols = "81" style = "font-size:25px;">Hey, this is Rob. I got your message concerning the service you booked on my website. I have reviewed your request and I am able to complete it. You are booked for {{dates}}. Email me at r_silver@robsilvervisuals.com, text me at 4436132750, or dm me on my instagram to coordinate time of day and other details. Thanks for choosing RobSilverVisuals, and I hope you have an awesome day. -Rob</textarea>
      <button id = "submit" type = "button" class = "confButton" onclick = "bsubmit();" style="width:950px !important">Submit</button>
    </form>
  <script>
@@ -47,7 +47,7 @@
  var para = document.getElementById("para");
  var bclick = function(button){
    var defRes = [];
-   defRes[0] = "Hey, this is Rob. I got your message concerning the service you booked on my website. I have reviewed your request and I am able to complete it. You are booked for [requested dates, will be filled correctly in email]. Email me at r_silver@robsilvervisuals.com, text me at 4436132750, or dm me on my instagram to coordinate time of day and other details. Thanks for choosing RobSilverVisuals, and I hope you have an awesome day. -Rob";
+   defRes[0] = "Hey, this is Rob. I got your message concerning the service you booked on my website. I have reviewed your request and I am able to complete it. You are booked for: {{dates}}. Email me at r_silver@robsilvervisuals.com, text me at 4436132750, or dm me on my instagram to coordinate time of day and other details. Thanks for choosing RobSilverVisuals, and I hope you have an awesome day. -Rob";
    defRes[1] = "Hey, this is Rob. I got your message concerning the service you booked on my website. Unfortunately, I am unable to complete your request at this time. I either have something going on during one of the dates you requested, or I'm not able to complete your request for other reasons. You are welcome to submit another request on my website, and I will look it over again and get back to you. If you have any questions or concerns, email me at r_silver@robsilvervisuals.com, text me at 4436132750, or dm me on my instagram. I apologize for any inconvenience, and I hope you have a great day. -Rob"
    if(button == 0){
      conf = true;
@@ -64,9 +64,11 @@
  var bsubmit = function(){
    if(conf != null){
    var formData = {
-     name: "{{Name}}",
-     msg:res.innerHTML,
-     conf: conf
+     Name: "{{Name}}",
+     Msg:res.innerHTML,
+     Conf: conf,
+     Email: {{email}},
+     Dates: {{dates}}
    };
    if(confirm("Are you sure everything is correct? Hit okay to send and cancel to edit")){
    $.ajax({

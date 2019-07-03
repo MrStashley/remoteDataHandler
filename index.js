@@ -170,6 +170,41 @@ app.get("/respond", (req,res,next) =>{
   res.render("confirm",data);
 })
 
+app.get("/confirm", (req,res,next) =>{
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
+  var email = req.body.Email;
+  var name = req.body.Name;
+  var msg = req.body.Msg;
+  var conf = req.body.Conf;
+  var dates = req.body.Dates;
+
+  if(conf){
+    var subject = "Request Status: Confirmed";
+  }else{
+    var subject = "Request Status: Denied";
+  }
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'robsilvervisualsbooking@gmail.com',
+      pass: 'austerity'
+    }
+  });
+
+  const confEmail = {
+    from: 'robsilvervisualsbooking@gmail.com',
+    to: email,
+    subject: subject,
+    text: msg
+  }
+
+})
+
 http.listen(port, function(){
   console.log('listening on *:' + port);
 });
