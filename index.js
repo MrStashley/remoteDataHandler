@@ -203,6 +203,14 @@ app.get("/confirm", (req,res,next) =>{
     text: msg
   }
 
+  transporter.sendMail(confEmail, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+
 })
 
 http.listen(port, function(){
