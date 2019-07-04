@@ -257,7 +257,7 @@ app.get("/config", (req,res,next) =>{
 		return days;
 	}
 
-   var monthString = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+   var monthString = ["January","February","March","April","May","June","July","August","September","October","November","December"];
    for(let i = 0; i<monthString.length; i++){
      con.query("create table " + monthString[i] +"( dateNum int AUTO_INCREMENT, clientName varchar(255), email varchar(255), message varchar(255), booked boolean, primary key (dateNum) );", function(err, result){
        if(err){
@@ -265,12 +265,12 @@ app.get("/config", (req,res,next) =>{
        }
      });
      var mdays = calcDays((i+1),2020);
-     for(let j = 1; j<=mdays){
-       con.query("insert into " + monthString[i] + "values ("j+",null,null,null,false)",function(err,result){
+     for(let j = 1; j<=mdays;j++){
+       con.query("insert into " + monthString[i] + "values ("+j+",null,null,null,false)",function(err,result){
          if(err){
            console.log(err.stack);
          }
-       })
+       });
      }
     }
     res.send("Database configured");
