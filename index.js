@@ -242,7 +242,7 @@ app.post("/confirm", (req,res,next) =>{
     curDate = new Date(dates[i]);
     curMonth = calcMonth(curDate.getMonth());
     curDay = curDate.getDate();
-    con.query("update ? set clientName = ?, email = ?, message = ? where dateNum = ?;", [curMonth,name,email,msg,curDay], function(err, result){
+    con.query("update ? set (clientName = ?, email = ?, message = ?) where dateNum = ?;", [curMonth,name,email,msg,curDay], function(err, result){
       if(err){
         console.log(err.stack);
       }
