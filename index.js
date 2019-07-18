@@ -14,15 +14,61 @@ app.set('view engine', 'mustache');
 app.engine('mustache', require('hogan-middleware').__express);
 
 const con = mysql.createPool({
-	connectionLimit: 100,
+	connectionLimit: 10,
 	host: "us-cdbr-iron-east-02.cleardb.net",
 	user: "bb6fdf5ccd214b",
 	password:"ee0fa2f6",
 	port: 3306,
 	database: "heroku_8df2f05d6bc3479",
 	debug: 'false',
-	connectTimeout: 100000
+	connectTimeout: 1000
 })
+
+function calcMonth(dmonth){
+		let month = "";
+		switch(dmonth){
+			case 1:
+				month = "January";
+				break;
+			case 2:
+				month = "February";
+				break;
+			case 3:
+				month = "March";
+				break;
+			case 4:
+				month = "April";
+				break;
+			case 5:
+				month = "May";
+				break;
+			case 6:
+				month = "June";
+				break;
+			case 7:
+				month = "July";
+				break;
+			case 8:
+				month = "August";
+				break;
+			case 9:
+				month = "September";
+				break;
+			case 10:
+				month = "October";
+				break;
+			case 11:
+				month = "November";
+				break;
+			case 12:
+				month = "December";
+				break;
+			default:
+				month = "Error";
+				break;
+		}
+		return month;
+	}
 
 app.get("/", (req, res, next) =>{
   res.render("home");
@@ -188,7 +234,18 @@ app.post("/confirm", (req,res,next) =>{
   var name = req.body.Name;
   var msg = req.body.Msg;
   var conf = req.body.Conf;
-  var dates = req.body.Dates;
+  var dates = JSON.parse(req.body.Dates);
+
+  console.log("Running Method");
+  for(let i = 0; i < dates.length; i++){
+    console.log("Running Loop");
+    curDate = new Date(dates[i]);
+    curMonth = calcMonth(curDate.getMonth());
+    curDay = curDate.getDate();
+    console.log(curDate.toDateString());
+    console.log(curMonth);
+    console.log(curDay);
+  }
 
   if(conf){
     var subject = "Request Status: Confirmed";
@@ -219,61 +276,6 @@ app.post("/confirm", (req,res,next) =>{
     }
   });
 
-})
-
-app.get("/config", (req,res,next) =>{
-
-  function calcDays(month,year){
-		var days;
-		var leapyear = false;
-
-		if((year%4 == 0) && (year%100 != 0) || (year%400 == 0))
-			leapyear = true;
-
-		switch(month){
-			case 2:
-				if(leapyear)
-					days = 29;
-				else
-					days = 28;
-				break;
-			case 1:
-			case 3:
-			case 5:
-			case 7:
-			case 8:
-			case 10:
-			case 12:
-				days = 31;
-				break;
-			case 4:
-			case 6:
-			case 9:
-			case 11:
-				days = 30;
-				break;
-		}
-
-		return days;
-	}
-
-   var monthString = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-   for(let i = 0; i<monthString.length; i++){
-     con.query("create table " + monthString[i] +"( dateNum int AUTO_INCREMENT, clientName varchar(255), email varchar(255), message varchar(255), booked boolean, primary key (dateNum) );", function(err, result){
-       if(err){
-         console.log(err.stack);
-       }
-     });
-     var mdays = calcDays((i+1),2020);
-     for(let j = 1; j<=mdays;j++){
-       con.query("insert into " + monthString[i] + "values ("+j+",null,null,null,false)",function(err,result){
-         if(err){
-           console.log(err.stack);
-         }
-       });
-     }
-    }
-    res.send("Database configured");
 })
 
 http.listen(port, function(){
