@@ -66,12 +66,14 @@
  }
  var bsubmit = function(){
    if(conf != null){
+     var formD = "{{dates}}";
+     var formDates = JSON.stringify(formD.split(","));
    var formData = {
      Name: "{{Name}}",
      Msg:res.innerHTML,
      Conf: conf,
      Email: "{{Email}}",
-     Dates: "{{dates}}"
+     Dates: formDates
    };
    if(confirm("Are you sure everything is correct? Hit okay to send and cancel to edit")){
    $.ajax({
