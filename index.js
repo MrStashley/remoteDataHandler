@@ -244,7 +244,7 @@ app.post("/confirm", (req,res,next) =>{
     curMonth = calcMonth(curDate.getMonth());
     curDay = curDate.getDate();
     if(conf){
-      con.query("insert into " + curMonth + "  (clientName, email, message, dateNum) values  (?,?,?,?);", [curMonth,name,email,clientMsg,curDay], function(err, result){
+      con.query("insert into " + curMonth + "  (clientName, email, message, dateNum) values  (?,?,?,?);", [name,email,clientMsg,curDay], function(err, result){
         if(err){
           console.log(err.stack);
         }
@@ -273,6 +273,7 @@ app.post("/confirm", (req,res,next) =>{
     text: msg
   }
 
+if(email != "null"){
   transporter.sendMail(confEmail, function(error, info){
     if (error) {
       console.log(error);
@@ -280,6 +281,7 @@ app.post("/confirm", (req,res,next) =>{
       console.log('Email sent: ' + info.response);
     }
   });
+}
 
 })
 
