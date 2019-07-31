@@ -299,7 +299,7 @@ app.post("/bdates", (req, res, next) =>{
     }
     var dates = JSON.stringify(result);
   });
-  res.json(result);
+  res.json(dates);
 })
 
 http.listen(port, function(){
