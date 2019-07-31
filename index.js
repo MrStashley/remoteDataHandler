@@ -246,7 +246,7 @@ app.post("/confirm", (req,res,next) =>{
   }
 
   if(conf){
-    con.query("insert into ?  (clientName, email, message, dateNum) values  (?,?,?,?);", [curMonth,name,email,clientMsg,curDay], function(err, result){
+    con.query("insert into " + curMonth + "  (clientName, email, message, dateNum) values  (?,?,?,?);", [curMonth,name,email,clientMsg,curDay], function(err, result){
       if(err){
         console.log(err.stack);
       }
