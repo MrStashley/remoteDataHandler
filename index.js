@@ -298,8 +298,8 @@ app.post("/bdates", (req, res, next) =>{
       console.log(err.stack);
     }
     var dates = JSON.stringify(result);
+    res.json(dates);
   });
-  res.json(dates);
 })
 
 http.listen(port, function(){
