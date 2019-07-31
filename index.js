@@ -291,7 +291,7 @@ app.post("/bdates", (req, res, next) =>{
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   res.setHeader('Access-Control-Allow-Credentials', true);
 
-  var curMonth = req.body;
+  var curMonth = req.body.month;
 
   con.query("select * from " + curMonth + ";", function(err, result){
     if(err){
