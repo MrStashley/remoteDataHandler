@@ -285,6 +285,17 @@ if(email != "null"){
 
 })
 
+app.post("/bdates", (req, res, next) =>{
+  var curMonth = req.body.curMonth;
+
+  con.query("select * from " + curMonth + ";", function(err, result){
+    if(err){
+      console.log(err.stack);
+    }
+    res.JSON(result);
+  });
+})
+
 http.listen(port, function(){
   console.log('listening on *:' + port);
 });
