@@ -243,14 +243,16 @@ app.post("/confirm", (req,res,next) =>{
     curDate = new Date(dates[i]);
     curMonth = calcMonth(curDate.getMonth());
     curDay = curDate.getDate();
+    if(conf){
+      con.query("insert into " + curMonth + "  (clientName, email, message, dateNum) values  (?,?,?,?);", [curMonth,name,email,clientMsg,curDay], function(err, result){
+        if(err){
+          console.log(err.stack);
+        }
+      });
+    }
   }
 
   if(conf){
-    con.query("insert into " + curMonth + "  (clientName, email, message, dateNum) values  (?,?,?,?);", [curMonth,name,email,clientMsg,curDay], function(err, result){
-      if(err){
-        console.log(err.stack);
-      }
-    });
     var subject = "Request Status: Confirmed";
   }else{
     var subject = "Request Status: Denied";
