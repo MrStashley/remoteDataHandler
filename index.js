@@ -235,6 +235,7 @@ app.post("/confirm", (req,res,next) =>{
   var msg = req.body.Msg;
   var conf = req.body.Conf;
   var dates = JSON.parse(req.body.Dates);
+  var clientMsg = req.body.clientMsg;
 
   console.log("Running Method");
   for(let i = 0; i < dates.length; i++){
