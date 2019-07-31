@@ -273,7 +273,7 @@ app.post("/confirm", (req,res,next) =>{
     text: msg
   }
 
-if(email != "null"){
+if(email != ""){
   transporter.sendMail(confEmail, function(error, info){
     if (error) {
       console.log(error);
