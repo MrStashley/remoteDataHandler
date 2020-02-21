@@ -1,2 +1,2 @@
 # remoteDataHandler
-handles ajax reqests from other sites
+Handles ajax reqests from other sites
